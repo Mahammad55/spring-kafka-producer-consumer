@@ -1,0 +1,24 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: &bootstrap-server localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 4
+      retry.backoff.ms: 2000
+      acks: all
+
+    consumer:
+      bootstrap-servers: *bootstrap-server
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: latest
+      group-id: demo
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.example.springkafkaproducerconsumer.*
+kafka:
+  topic:
+    name: kafka-test-topic
