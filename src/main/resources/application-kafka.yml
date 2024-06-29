@@ -22,3 +22,5 @@ spring:
 kafka:
   topic:
     name: kafka-test-topic
+  user-topic:
+    name: user-data
